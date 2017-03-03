@@ -45,7 +45,7 @@ Seqtkfc Examples
 * Subsample 10000 read pairs from two large paired FASTQ files (remember to use the same random seed to keep pairing):
 
         seqtkfc sample -s100 read1.fq 10000 > sub1.fq
-        seqtk sample -s100 read2.fq 10000 > sub2.fq
+        seqtkfc sample -s100 read2.fq 10000 > sub2.fq
 
 * Trim low-quality bases from both ends using the Phred algorithm:
 
