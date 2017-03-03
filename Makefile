@@ -1,13 +1,13 @@
 CC=gcc
 CFLAGS=-g -Wall -O2 -Wno-unused-function
 
-all:seqtk trimadap
+all:seqtkfc trimadap
 
-seqtk:seqtk.c khash.h kseq.h
-		$(CC) $(CFLAGS) seqtk.c -o $@ -lz -lm
+seqtk:seqtkfc.c khash.h kseq.h
+		$(CC) $(CFLAGS) seqtkfc.c -o $@ -lz -lm
 
-trimadap:trimadap.c kseq.h ksw.h
+trimadapfc:trimadapfc.c kseq.h ksw.h
 		$(CC) $(CFLAGS) ksw.c trimadap.c -o $@ -lz -lm
 
 clean:
-		rm -fr gmon.out *.o ext/*.o a.out seqtk trimadap *~ *.a *.dSYM session*
+		rm -fr gmon.out *.o ext/*.o a.out seqtkfc trimadapfc *~ *.a *.dSYM session*
