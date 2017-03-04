@@ -294,7 +294,7 @@ int stk_trimfq(int argc, char *argv[])
 	}
 	if (optind == argc) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc trimfq [options] <in.fq>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk trimfq [options] <in.fq>\n\n");
 		fprintf(stderr, "Options: -q FLOAT    error rate threshold (disabled by -b/-e) [%.2f]\n", param);
 		fprintf(stderr, "         -l INT      maximally trims down from right end to INT bp when the trimming results in read length below this [%d]\n", min_len);
 		fprintf(stderr, "         -b INT      trim INT bp from left (non-zero to disable -q; it has priority over -B) [0]\n");
@@ -402,7 +402,7 @@ int stk_comp(int argc, char *argv[])
 		}
 	}
 	if (argc == optind && isatty(fileno(stdin))) {
-		fprintf(stderr, "Usage:  seqtkfc comp [-u] [-r in.bed] <in.fa>\n\n");
+		fprintf(stderr, "Usage:  fcseqtk comp [-u] [-r in.bed] <in.fa>\n\n");
 		fprintf(stderr, "Output format: chr, length, #A, #C, #G, #T, #2, #3, #4, #CpG, #tv, #ts, #CpG-ts\n");
 		return 1;
 	}
@@ -468,7 +468,7 @@ int stk_randbase(int argc, char *argv[])
 	kseq_t *seq;
 	int l;
 	if (argc == 1) {
-		fprintf(stderr, "Usage: seqtkfc randbase <in.fa>\n");
+		fprintf(stderr, "Usage: fcseqtk randbase <in.fa>\n");
 		return 1;
 	}
 	fp = (strcmp(argv[1], "-") == 0)? gzdopen(fileno(stdin), "r") : gzopen(argv[1], "r");
@@ -509,7 +509,7 @@ int stk_hety(int argc, char *argv[])
 	uint32_t cnt[3];
 	if (argc == 1) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc hety [options] <in.fa>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk hety [options] <in.fa>\n\n");
 		fprintf(stderr, "Options: -w INT   window size [%d]\n", win_size);
 		fprintf(stderr, "         -t INT   # start positions in a window [%d]\n", n_start);
 		fprintf(stderr, "         -m       treat lowercases as masked\n");
@@ -575,7 +575,7 @@ int stk_subseq(int argc, char *argv[])
 	}
 	if (optind + 2 > argc) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc subseq [options] <in.fa> <in.bed>|<name.list>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk subseq [options] <in.fa> <in.bed>|<name.list>\n\n");
 		fprintf(stderr, "Options: -t       TAB delimited output\n");
 		fprintf(stderr, "         -l INT   sequence line length [%d]\n\n", line);
 		fprintf(stderr, "Note: Use 'samtools faidx' if only a few regions are intended.\n\n");
@@ -649,7 +649,7 @@ int stk_mergefa(int argc, char *argv[])
 		return 1;
 	}
 	if (optind + 2 > argc) {
-		fprintf(stderr, "\nUsage: seqtkfc mergefa [options] <in1.fa> <in2.fa>\n\n");
+		fprintf(stderr, "\nUsage: fcseqtk mergefa [options] <in1.fa> <in2.fa>\n\n");
 		fprintf(stderr, "Options: -q INT   quality threshold [0]\n");
 		fprintf(stderr, "         -i       take intersection\n");
 		fprintf(stderr, "         -m       convert to lowercase when one of the input base is N\n");
@@ -734,7 +734,7 @@ int stk_famask(int argc, char *argv[])
 	kseq_t *seq[2];
 	int i, l;
 	if (argc < 3) {
-		fprintf(stderr, "Usage: seqtkfc famask <src.fa> <mask.fa>\n");
+		fprintf(stderr, "Usage: fcseqtk famask <src.fa> <mask.fa>\n");
 		return 1;
 	}
 	for (i = 0; i < 2; ++i) {
@@ -772,7 +772,7 @@ int stk_mutfa(int argc, char *argv[])
 	kstring_t *str;
 	khint_t k;
 	if (argc < 3) {
-		fprintf(stderr, "Usage: seqtkfc mutfa <in.fa> <in.snp>\n\n");
+		fprintf(stderr, "Usage: fcseqtk mutfa <in.fa> <in.snp>\n\n");
 		fprintf(stderr, "Note: <in.snp> contains at least four columns per line which are:\n");
 		fprintf(stderr, "      'chr  1-based-pos  any  base-changed-to'.\n");
 		return 1;
@@ -847,7 +847,7 @@ int stk_listhet(int argc, char *argv[])
 	kseq_t *seq;
 	int i, l;
 	if (argc == 1) {
-		fprintf(stderr, "Usage: seqtkfc listhet <in.fa>\n");
+		fprintf(stderr, "Usage: fcseqtk listhet <in.fa>\n");
 		return 1;
 	}
 	fp = (strcmp(argv[1], "-") == 0)? gzdopen(fileno(stdin), "r") : gzopen(argv[1], "r");
@@ -929,7 +929,7 @@ int stk_cutN(int argc, char *argv[])
 	}
 	if (argc == optind) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc cutN [options] <in.fa>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk cutN [options] <in.fa>\n\n");
 		fprintf(stderr, "Options: -n INT    min size of N tract [%d]\n", cutN_min_N_tract);
 		fprintf(stderr, "         -p INT    penalty for a non-N [%d]\n", cutN_nonN_penalty);
 		fprintf(stderr, "         -g        print gaps only, no sequence\n\n");
@@ -959,7 +959,7 @@ int stk_hrun(int argc, char *argv[])
 	kseq_t *ks;
 	int min_len = 7, l = 0, c = 0, beg = 0, i;
 	if (argc == optind) {
-		fprintf(stderr, "Usage: seqtkfc hrun <in.fa> [minLen=%d]\n", min_len);
+		fprintf(stderr, "Usage: fcseqtk hrun <in.fa> [minLen=%d]\n", min_len);
 		return 1;
 	}
 	if (argc == optind + 2) min_len = atoi(argv[optind+1]);
@@ -1017,7 +1017,7 @@ int stk_sample(int argc, char *argv[])
 
 	if (optind + 2 > argc) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc sample [-2] [-s seed=11] <in.fa> <frac>|<number>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk sample [-2] [-s seed=11] <in.fa> <frac>|<number>\n\n");
 		fprintf(stderr, "Options: -s INT       RNG seed [11]\n");
 		fprintf(stderr, "         -2           2-pass mode: twice as slow but with much reduced memory\n\n");
 		return 1;
@@ -1184,7 +1184,7 @@ int stk_seq(int argc, char *argv[])
 	if (kr == 0) kr = kr_srand(11);
 	if (argc == optind && isatty(fileno(stdin))) {
 		fprintf(stderr, "\n");
-		fprintf(stderr, "Usage:   seqtkfc seq [options] <in.fq>|<in.fa>\n\n");
+		fprintf(stderr, "Usage:   fcseqtk seq [options] <in.fq>|<in.fa>\n\n");
 		fprintf(stderr, "Options: -q INT    mask bases with quality lower than INT [0]\n");
 		fprintf(stderr, "         -X INT    mask bases with quality higher than INT [255]\n");
 		fprintf(stderr, "         -n CHAR   masked bases converted to CHAR; 0 for lowercase [0]\n");
@@ -1282,7 +1282,7 @@ int stk_gc(int argc, char *argv[])
 		else if (c == 'l') min_l = atoi(optarg);
 	}
 	if (optind + 1 > argc) {
-		fprintf(stderr, "Usage: seqtkfc gc [options] <in.fa>\n");
+		fprintf(stderr, "Usage: fcseqtk gc [options] <in.fa>\n");
 		fprintf(stderr, "Options:\n");
 		fprintf(stderr, "  -w         identify high-AT regions\n");
 		fprintf(stderr, "  -f FLOAT   min GC fraction (or AT fraction for -w) [%.2f]\n", frac);
@@ -1331,7 +1331,7 @@ int stk_mergepe(int argc, char *argv[])
 	kseq_t *seq[2];
 
 	if (argc < 3) {
-		fprintf(stderr, "Usage: seqtkfc mergepe <in1.fq> <in2.fq>\n");
+		fprintf(stderr, "Usage: fcseqtk mergepe <in1.fq> <in2.fq>\n");
 		return 1;
 	}
 	fp1 = strcmp(argv[1], "-")? gzopen(argv[1], "r") : gzdopen(fileno(stdin), "r");
@@ -1359,7 +1359,7 @@ int stk_dropse(int argc, char *argv[])
 	kseq_t *seq, last;
 
 	if (argc == 1 && isatty(fileno(stdin))) {
-		fprintf(stderr, "Usage: seqtkfc dropse <in.fq>\n");
+		fprintf(stderr, "Usage: fcseqtk dropse <in.fq>\n");
 		return 1;
 	}
 	fp = argc > 1 && strcmp(argv[1], "-")? gzopen(argv[1], "r") : gzdopen(fileno(stdin), "r");
@@ -1396,7 +1396,7 @@ int stk_rename(int argc, char *argv[])
 	uint64_t n = 1;
 
 	if (argc == 1 && isatty(fileno(stdin))) {
-		fprintf(stderr, "Usage: seqtkfc rename <in.fq> [prefix]\n");
+		fprintf(stderr, "Usage: fcseqtk rename <in.fq> [prefix]\n");
 		return 1;
 	}
 	fp = argc > 1 && strcmp(argv[1], "-")? gzopen(argv[1], "r") : gzdopen(fileno(stdin), "r");
@@ -1440,7 +1440,7 @@ int stk_kfreq(int argc, char *argv[])
 	char *nei;
 
 	if (argc < 2) {
-		fprintf(stderr, "Usage: seqtkfc kfreq <kmer> <in.fa>\n");
+		fprintf(stderr, "Usage: fcseqtk kfreq <kmer> <in.fa>\n");
 		return 1;
 	}
 
@@ -1531,7 +1531,7 @@ int stk_fqchk(int argc, char *argv[])
 		if (c == 'q') qthres = atoi(optarg);
 
 	if (optind == argc) {
-		fprintf(stderr, "Usage: seqtkfc fqchk [-q %d] <in.fq>\n", qthres);
+		fprintf(stderr, "Usage: fcseqtk fqchk [-q %d] <in.fq>\n", qthres);
 		fprintf(stderr, "Note: use -q0 to get the distribution of all quality values\n");
 		return 1;
 	}
@@ -1592,7 +1592,7 @@ int stk_fqchk(int argc, char *argv[])
 static int usage()
 {
 	fprintf(stderr, "\n");
-	fprintf(stderr, "Usage:   seqtkfc <command> <arguments>\n");
+	fprintf(stderr, "Usage:   fcseqtk <command> <arguments>\n");
 	fprintf(stderr, "Version: 1.0-r82b-dirty\n\n");
 	fprintf(stderr, "Command: seq       common transformation of FASTA/Q\n");
 	fprintf(stderr, "         comp      get the nucleotide composition of FASTA/Q\n");
